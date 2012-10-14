@@ -5,14 +5,6 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'haml'
 
-#gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
-
-#gem 'eventmachine'
-#gem 'em-synchrony'
-#gem 'em-websocket'
-#gem 'thin'
-#gem 'sinatra', :require => false
-
 gem "fakefs", :require => "fakefs/safe"
 
 group :assets do
