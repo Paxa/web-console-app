@@ -12,3 +12,10 @@
   %ul
     %li use web apps to have programmable interface for client-side functions (such as start/stop music, signin/logout from web chat)
     %li use with websockets to have remote control for web based apps
+
+%section.music
+  %p
+    Other example is #{link_to "music console", '#', :class => 'music_console'}
+    = raw "(hotkey is <i>'m'</i>)"
+  %audio(src="https://dl.dropbox.com/u/586048/13-My%20Darling-Ralph%20Myerz%20%28feat%20Pee%20Wee%29.mp3")
+    %source(src="https://dl.dropbox.com/u/586048/13-My%20Darling-Ralph%20Myerz%20%28feat%20Pee%20Wee%29.ogg")

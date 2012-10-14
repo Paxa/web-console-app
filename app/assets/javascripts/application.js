@@ -17,14 +17,36 @@
 //= require rails_console
 //= require music_console
 
-window.addEvent('domready', function() {
-  var console = new RailsConsole($$('.web_console#rails')[0]).bindKeyEvents();
-  //console.open();
-  $$('p.tip i').addEvent('click', console.open.bind(console));
+//= require audio
 
-  new MusicConsole($$('.web_console#music')[0], {
+audiojs.events.ready(function() {
+  var as = audiojs.createAll({
+    preload: false
+  });
+  AudioPlayer = as[0];
+});
+
+window.addEvent('domready', function() {
+  var railsConsole = new RailsConsole($$('.web_console#rails')[0]);
+  //console.open();
+  $$('p.tip i').addEvent('click', railsConsole.toggle.bind(railsConsole));
+
+  var musicConsole = new MusicConsole($$('.web_console#music')[0], {
+    historyCookie: 'music_console_history',
     activate: function (e) {
-      return (e.key == 'm');
+      if (railsConsole.state == 'closed') {
+        if (e.key == 'm' && this.state == 'closed') {
+          return true;
+        }
+      }
+      if (this.state == 'open' && e.key == 'esc') {
+        e.stop();
+        return true;
+      }
     }
   }).bindKeyEvents();
+
+  $$('.music_console').addEvent('click', musicConsole.toggle.bind(musicConsole));
+
+  railsConsole.bindKeyEvents();
 });

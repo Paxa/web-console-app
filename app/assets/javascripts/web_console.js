@@ -18,6 +18,8 @@ var WebConsole = new Class({
     this.element = document.id(element);
     this.log = this.element.getElement('.log');
     this.input = this.element.getElement('textarea');
+    this.autoCompleteContainer = this.element.getElement('.command_line .autocomplete');
+
     this.log.addEvent('click', this.input.focus.bind(this.input));
     this.element.getElement('a.close').addEvent('click', this.close.bind(this));
 
@@ -45,12 +47,34 @@ var WebConsole = new Class({
     //console.log(this.history);
   },
 
+  // this 2 methods is for extending
   execute: function (value) {
     
   },
 
   autoComplete: function (value) {
     
+  },
+
+  showAutoComplete: function (values) {
+    var html = '';
+    values.each(function(i) { html += '<li>' + i + '</li>'; });
+    this.autoCompleteContainer.set('html', '<ul>' + html + '</ul>');
+    this.autoCompleteContainer.getElements('li').addEvent('click', this.applyFromAutoComplete.bind(this));
+    this.autoCompleteContainer.addClass('shown');
+    this.scrollDown();
+  },
+
+  clearAutoComplete: function () {
+    this.autoCompleteContainer.empty();
+    this.autoCompleteContainer.removeClass('shown');
+  },
+
+  applyFromAutoComplete: function (e) {
+    var value = e.target.get('text');
+    this.input.value = value;
+    this.input.focus();
+    this.clearAutoComplete();
   },
 
   sendCommand: function () {
@@ -60,7 +84,9 @@ var WebConsole = new Class({
     var value = this.input.value;
     this.historyPush(value);
     this.appendLine(value, "command");
-    this.execute(value);
+    try {
+      this.execute(value);
+    } catch (e) { console.error(e); }
     this.input.value = '';
   },
 
@@ -106,7 +132,7 @@ var WebConsole = new Class({
 
   bindKeyEvents: function () {
     document.body.addEvent('keydown', function(e) {
-      if (this.options.activate(e)) {
+      if (this.options.activate.call(this, e)) {
         this.toggle();
         e.stop();
       }
@@ -115,6 +141,13 @@ var WebConsole = new Class({
   },
 
   toggle: function () {
+    // make it looks nice with rumble2012 button
+    if (document.body.getElement('#rumble2012')) {
+      this.element.addClass('with_rumble');
+    } else {
+      this.element.removeClass('with_rumble');
+    }
+
     this[this.state == 'closed' ? 'open' : 'close']();
   },
 

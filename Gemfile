@@ -22,8 +22,8 @@ group :assets do
 
   gem 'mootools-rails'
   gem 'compass-rails', '1.0.3'
-  gem 'sassy-buttons'
   gem 'compass'
+  gem 'sassy-buttons'
 end
 
 group :development do
