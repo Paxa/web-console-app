@@ -24,6 +24,7 @@ var WebConsole = new Class({
     this.element.getElement('a.close').addEvent('click', this.close.bind(this));
 
     this.input.addEvent('keydown', function(e) {
+      if (e.key != 'tab') this.clearAutoComplete();
       if (e.key == 'enter') {
         if (Browser.Platform.mac && !e.meta || !Browser.Platform.mac && e.control) {
           this.sendCommand();
@@ -37,7 +38,7 @@ var WebConsole = new Class({
       } else if (e.key == 'down') {
         this.historyForward();
       }
-      console.log(e);
+      //console.log(e);
     }.bind(this));
 
     try {
@@ -63,11 +64,14 @@ var WebConsole = new Class({
     this.autoCompleteContainer.getElements('li').addEvent('click', this.applyFromAutoComplete.bind(this));
     this.autoCompleteContainer.addClass('shown');
     this.scrollDown();
+    this.autoCompleteOpen = true;
   },
 
   clearAutoComplete: function () {
+    if (!this.autoCompleteOpen) return;
     this.autoCompleteContainer.empty();
     this.autoCompleteContainer.removeClass('shown');
+    this.autoCompleteOpen = false;
   },
 
   applyFromAutoComplete: function (e) {

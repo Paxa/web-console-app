@@ -28,7 +28,6 @@ var MusicConsole = new Class({
   },
 
   autoComplete: function (value) {
-    console.log('autoComplete', value);
     this.showAutoComplete(this.commands);
   },
 
