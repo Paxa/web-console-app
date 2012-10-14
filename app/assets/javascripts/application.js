@@ -15,9 +15,16 @@
 
 //= require web_console
 //= require rails_console
+//= require music_console
 
 window.addEvent('domready', function() {
-  var console = new RailsConsole($$('section.web_console')[0]).bindKeyEvents();
+  var console = new RailsConsole($$('.web_console#rails')[0]).bindKeyEvents();
   //console.open();
-  $$('p.intro i').addEvent('click', console.open.bind(console));
+  $$('p.tip i').addEvent('click', console.open.bind(console));
+
+  new MusicConsole($$('.web_console#music')[0], {
+    activate: function (e) {
+      return (e.key == 'm');
+    }
+  }).bindKeyEvents();
 });

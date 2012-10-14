@@ -5,7 +5,8 @@
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
   %body  
-    = render 'shared/web_console', :initial => "Loading development environment (Rails 3.2.8)"
+    = render 'shared/web_console', :initial => "Loading development environment (Rails 3.2.8)", :id => 'rails'
+    = render 'shared/web_console', :initial => "Press tab to list all commands", :id => 'music'
     #wrapper
       = render 'shared/header'
       

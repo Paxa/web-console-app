@@ -38,5 +38,5 @@ production:
   database: webconsole_production
   pool: 5
   username: root
-  password:
+  password: Zhopa123
   socket: /tmp/mysql.sock

@@ -1,8 +1,9 @@
-%section.web_console.hidden
+%section.web_console.hidden{:id => local_assigns[:id]}
   .log<>
     - if local_assigns[:initial]
       .line.initial= local_assigns[:initial]
   .command_line<>
     %textarea<>
+    = link_to image_tag('/assets/close.png'), '', :class => 'close'
     .autocomplete<>
   
