@@ -1,0 +1,8 @@
+%section.web_console.hidden
+  .log<>
+    - if local_assigns[:initial]
+      .line.initial= local_assigns[:initial]
+  .command_line<>
+    %textarea<>
+    .autocomplete<>
+  

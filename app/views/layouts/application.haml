@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title= @page_title ? "#{@page_title} | WebConsole" : "WebConsole"
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+  %body  
+    = render 'shared/web_console', :initial => "Loading development environment (Rails 3.2.8)"
+    #wrapper
+      = render 'shared/header'
+      
+      - if flash.keys.present?
+        .flash-messages
+          - flash.each do |key, msg|
+            %div{:class => key}
+              = msg
+
+      %section.page
+        = yield
+      %footer
+        by #{link_to "@Paxa", "http://github.com/Paxa"} ©
+  = javascript_include_tag "application"
+  = yield :scripts

@@ -1,0 +1,43 @@
+section.web_console
+  :position absolute
+  :background rgba(0, 0, 0, 0.85)
+  :font-size 14px
+  :width 100%
+  :overflow-y auto
+  :overflow-x hidden
+  :top 0
+  :border-bottom 1px solid #aaa
+  +box-shadow(0 0 4px 0 rgba(0, 0, 0, 0.3))
+  :height 17em
+  :font-family Consolas, "Liberation Mono", Courier, monospace
+  :color white
+  +transition
+  &.hidden
+    :top -50%
+    +box-shadow(0 0 0px 0 rgba(0, 0, 0, 0.3))
+  > .log
+    :min-height 15em
+    .line
+      :color white
+      :white-space pre-wrap
+  > *
+    :padding
+      :left 4px
+      :right 4px
+  .command_line
+    :padding 0 4px
+    :height 1.5em
+    :margin 0
+    :border 0
+    textarea
+      :padding 0
+      :height 1.5em
+      :margin 0
+      :border 0
+      :background transparent
+      :font
+        :size 14px
+        :family Consolas, "Liberation Mono", Courier, monospace
+      :color white
+      :width 98%
+      :outline none

@@ -1,0 +1,45 @@
+
+@import compass
+
+$default-transition-duration: 0.3s
+
+@import 'sassy-buttons'
+
+html, body
+  :margin 0
+  :padding 0
+  :border 0
+  :vertical-align baseline
+  :height 100%
+  :font
+    :size 14px
+    :family sans-serif
+
+body
+  :line-height 1.5
+  +background-image(linear-gradient(#73c6ef, #cde6f3))
+  > #wrapper
+    :margin 0 auto
+    :width 60%
+    > header
+      :color #8c5134
+      :padding-bottom 18px
+    > footer
+      +border-radius(3px)
+      :padding 4px 10px
+      +background-image(linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.14)))
+      a
+        :color black
+
+
+section.page
+  :min-height 300px
+  p.intro
+    i
+      :font-style normal
+      +sassy-button("simple", 2px, 14px, #37637f, #27475b)
+      :margin
+        :left 3px
+        :right 3px
+
+@import "web_console"
