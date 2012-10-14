@@ -5,7 +5,7 @@
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
   %body  
-    = render 'shared/web_console', :initial => "Loading development environment (Rails 3.2.8)", :id => 'rails'
+    = render 'shared/web_console', :initial => "Rails 3.2.8: #{Rails.env} environment", :id => 'rails'
     = render 'shared/web_console', :initial => "Press tab to list all commands", :id => 'music'
     #wrapper
       = render 'shared/header'
@@ -19,7 +19,7 @@
       %section.page
         = yield
       %footer
-        by #{link_to "@Paxa", "http://github.com/Paxa"} ©
+        #{link_to raw("#{image_tag 'github.png'}<span>Paxa</span>"), "http://github.com/Paxa"}
   = javascript_include_tag "application"
   = javascript_include_tag "http://s0.railsrumble.com/banner.js"
   = yield :scripts

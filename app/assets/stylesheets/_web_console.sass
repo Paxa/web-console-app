@@ -13,7 +13,8 @@ section.web_console
   :color white
   +transition
   &.with_rumble
-    :top 21px
+    :border-top 1px solid #666
+    :top 41px
   &.hidden
     :top -50%
     +box-shadow(0 0 0px 0 rgba(0, 0, 0, 0.3))
@@ -31,6 +32,7 @@ section.web_console
     :height 1.5em
     :margin 0
     :border 0
+    :position relative
     .autocomplete
       :background rgba(255, 255, 255, 0.1)
       :padding 2px 4px
@@ -47,11 +49,13 @@ section.web_console
       &.shown
         :display block
     a.close
-      +opacity(0.7)
-      :margin-right 3px
-      :float right
-      :position relative
-      :top 4px
+      :color #ddd
+      :font-size 16px
+      :position absolute
+      :text-decoration none
+      :line-height 16px
+      :right 6px
+      :top 8px
     textarea
       :padding 0
       :height 1.5em
